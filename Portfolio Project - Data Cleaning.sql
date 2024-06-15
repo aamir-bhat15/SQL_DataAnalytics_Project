@@ -70,7 +70,7 @@ WHERE
 
 -- these are the ones we want to delete where the row number is > 1 or 2or greater essentially
 
--- now you may want to write it like this:
+-- now we may want to write it like this:
 WITH DELETE_CTE AS 
 (
 SELECT *
@@ -216,7 +216,6 @@ OR industry = ''
 ORDER BY industry;
 
 -- ---------------------------------------------------
-
 -- I also noticed the Crypto has multiple different variations. We need to standardize that - let's say all to Crypto
 SELECT DISTINCT industry
 FROM world_layoffs.layoffs_staging2
@@ -244,6 +243,11 @@ ORDER BY country;
 
 UPDATE layoffs_staging2
 SET country = TRIM(TRAILING '.' FROM country);
+
+-- OR we can use this query
+UPDATE layoffs_staging2
+SET country = 'United States'
+WHERE country='United States.';
 
 -- now if we run this again it is fixed
 SELECT DISTINCT country
